@@ -1,0 +1,8 @@
+.ui.header a {
+  color: #ddd;
+  transition: .2s;
+}
+
+.ui.header a:hover {
+  color: #aaa;
+}

@@ -1,0 +1,11 @@
+.ui.segment.rank {
+  padding: 0.4em 1em;
+  margin: -0.8em auto 0 auto;
+  background-color: #4ba74b;
+  font-size: 1.5rem;
+}
+
+.ui.header .subheader{
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.6);
+}
