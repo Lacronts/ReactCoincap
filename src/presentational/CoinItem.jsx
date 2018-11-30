@@ -30,7 +30,6 @@ const CoinItem = ({coin, currency}) => (
           textAlign={'center'}
           className="text_primary"
         >
-        {console.log('render item')}
           <strong>{currency === 'USD' ? formatCurrency(coin.quote[currency].price) : formatNumber(coin.quote[currency].price)}</strong>
         </Grid.Column>
         <Grid.Column only={'computer'} computer={3} textAlign={'center'}>

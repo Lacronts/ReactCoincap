@@ -163,7 +163,6 @@ class ListOfCoins extends React.Component {
       <Segment.Group stacked>
         {this.renderTableHeader()}
         {this.renderTable()}
-        {console.log('mount LIST')}
       </Segment.Group>
     )
   }
