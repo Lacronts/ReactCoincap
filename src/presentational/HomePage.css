@@ -1,0 +1,41 @@
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 400ms ease-in;
+}
+
+.fade-exit {
+    opacity: 0;
+}
+
+.fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 400ms ease-in;
+}
+
+.arrow.circle.up {
+  transition: 0.2s;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  margin: 0;
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 3em;
+}
+
+i.icon.arrow.alternate.circle.up:before {
+  font-size: 46px;
+  position: absolute;
+  left: -2px;
+  top:-2px;
+
+}
+
+.arrow.circle.up:hover {
+  color: #009e73;
+  background-color: #222;
+}

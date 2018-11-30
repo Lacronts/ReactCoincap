@@ -1,3 +1,7 @@
 .column .ui.header {
   margin: 0.5rem 0;
 }
+
+.column .ui.header.text_primary {
+  color: #1070e0;
+}

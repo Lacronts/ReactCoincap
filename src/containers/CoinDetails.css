@@ -9,3 +9,19 @@
   font-size: 0.8em;
   color: rgba(0, 0, 0, 0.6);
 }
+
+.ui.header.price {
+  font-weight: 400;
+}
+
+.text_primary{
+  color:#1070e0;
+}
+
+.ui.header .sub.header.text_green {
+  color: #009e73;
+}
+
+.ui.header .sub.header.text_red {
+  color: #d94040;
+}

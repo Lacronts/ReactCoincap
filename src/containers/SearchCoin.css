@@ -1,0 +1,21 @@
+.item .ui.search>.results .result .image {
+  width: 32px;
+  height: 32px;
+}
+
+.item .ui.search>.results .result {
+  padding: 0.3em 0.7em;
+}
+
+.item .ui.search>.results .result .image+.content {
+  margin: 0.5em 40px 0 0;
+}
+
+.item .ui.search>.results {
+  max-height: 30rem;
+  max-width: 15em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  z-index: 10000000000000;
+}

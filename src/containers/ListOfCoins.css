@@ -2,3 +2,13 @@
   background-color: rgba(0, 0, 0, 0.75);
   color: rgba(255, 255, 255, 0.8);
 }
+
+.column.list_header{
+  white-space: nowrap;
+}
+
+.column.list_header:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #009e73;
+}

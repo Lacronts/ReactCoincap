@@ -1,4 +1,4 @@
-export function marketReducer(state = {}, action) {
+export function market(state = {}, action) {
   switch (action.type) {
     case 'FETCH_MARKET_DATA':
       return action.data.data.data;

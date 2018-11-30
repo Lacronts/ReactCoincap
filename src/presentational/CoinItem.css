@@ -9,3 +9,15 @@
   box-shadow: 0 0 4px 0 rgba(0,0,0,.3);
   z-index: 1;
 }
+
+.ui.grid .row .column.text_red {
+  color: #d94040;
+}
+
+.ui.grid .row .column.text_green {
+  color: #009e73;
+}
+
+.ui.grid .row .column.text_primary {
+  color: #1070e0;
+}

@@ -1,4 +1,4 @@
-export function loadingReducer(state = {coins: true, market: true}, action) {
+export function loading(state = {coins: true, market: true}, action) {
   switch (action.type) {
     case 'SET_LOADING':
       return {...state, ...action.payload}
