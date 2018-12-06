@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchCoinData } from '../store/actions/coinAction';
+import HistoricalChart from './HistoricalChart';
+import { fetchHistoricalData, clearHistoricalData } from '../store/actions/historicalAction';
 import { formatCurrency, formatPercent, formatNumber, isValuePositive } from '../utils';
 import Preloader from '../presentational/Preloader';
 import NotFound from '../presentational/NotFound';
@@ -11,6 +13,8 @@ import {
   Grid,
   Header,
   Segment,
+  Divider,
+  Button,
 } from 'semantic-ui-react';
 import './CoinDetails.css';
 
@@ -21,12 +25,25 @@ const style = {
 }
 
 class CoinDetails extends React.Component {
-
   componentDidMount(){
+    const coin = this.props.match.params.id;
     window.scrollTo(0,0);
-    if (this.props.isLoading){
+    if (this.props.coinsIsLoading){
       this.props.fetchCoinData()
     };
+    this.props.fetchHistoricalData(coin);
+  }
+
+  componentDidUpdate(prevProps){
+    const coin = this.props.match.params.id;
+    if (coin !== prevProps.match.params.id){
+      this.props.fetchHistoricalData(coin);
+    }
+  }
+
+  handleDaysCount = (days) => {
+    const coin = this.props.match.params.id;
+    this.props.fetchHistoricalData(coin, days);
   }
 
   renderCoinDetailsPage = (coin) => (
@@ -112,25 +129,52 @@ class CoinDetails extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <Button.Group style={style.mt2}>
+        <Button onClick={() => this.handleDaysCount(730)}>
+          2 Years
+        </Button>
+        <Button onClick={() => this.handleDaysCount(365)}>
+          1 Year
+        </Button>
+        <Button onClick={() => this.handleDaysCount(182)}>
+          6 months
+        </Button>
+        <Button onClick={() => this.handleDaysCount(31)}>
+          1 month
+        </Button>
+      </Button.Group>
     </Container>
   )
 
   render(){
-    const { coin, isLoading } = this.props;
+    const { coin, coinsIsLoading, historical, historicalIsLoading } = this.props;
 
-    if (isLoading) return <Preloader height='75vh'/>;
+    if (coinsIsLoading) return <Preloader height='75vh'/>;
 
-    if (!isLoading && !coin) return <NotFound />
+    if (!coinsIsLoading && !coin) return <NotFound />
 
-    return this.renderCoinDetailsPage(coin);
+    return (
+      <React.Fragment>
+        {this.renderCoinDetailsPage(coin)}
+        <Divider horizontal>
+          Price Chart
+        </Divider>
+        <HistoricalChart
+          loading={historicalIsLoading}
+          data={historical}
+        />
+      </React.Fragment>
+    );
   }
 }
 
 CoinDetails.propTypes = {
   match: PropTypes.object.isRequired,
   coin: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  coinsIsLoading: PropTypes.bool.isRequired,
+  historicalIsLoading: PropTypes.bool.isRequired,
   fetchCoinData: PropTypes.func.isRequired,
+  historical: PropTypes.array.isRequired,
 }
 
 const coinSelector = (state, ownProps) => {
@@ -139,11 +183,15 @@ const coinSelector = (state, ownProps) => {
 
 const mapStateToProps = (state, ownProps) => ({
       coin: coinSelector(state, ownProps) || {},
-      isLoading: state.isLoading.coins,
+      coinsIsLoading: state.isLoading.coins,
+      historicalIsLoading: state.isLoading.historical,
+      historical: state.historical,
     });
 
 const mapDispatchToProps = {
     fetchCoinData,
+    fetchHistoricalData,
+    clearHistoricalData,
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CoinDetails));
