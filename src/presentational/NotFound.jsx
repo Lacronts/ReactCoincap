@@ -5,7 +5,7 @@ import {
   Header,
   Icon,
 } from 'semantic-ui-react';
-import './NotFound.css';
+import './styles/NotFound.css';
 
 const NotFound = () => (
   <Container textAlign='center' className="not-found">

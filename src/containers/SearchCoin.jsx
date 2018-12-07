@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Search } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import './SearchCoin.css';
+import './styles/SearchCoin.css';
 
 class SearchCoin extends React.Component {
   static contextTypes = {

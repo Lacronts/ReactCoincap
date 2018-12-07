@@ -1,0 +1,1 @@
+export const FETCH_MARKET_DATA = 'FETCH_MARKET_DATA';

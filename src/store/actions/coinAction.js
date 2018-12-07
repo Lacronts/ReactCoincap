@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { FETCH_COIN_DATA } from '../constants/coins';
+import { SET_LOADING } from '../constants/loading';
+import { CHANGE_CURRENCY } from '../constants/currency';
 
 export function fetchCoinData(){
   return async dispatch => {
@@ -8,11 +11,11 @@ export function fetchCoinData(){
     ]);
     const result = appendCryptoCourses(...data);
       dispatch({
-        type: 'FETCH_COIN_DATA',
+        type: FETCH_COIN_DATA,
         data: result,
       });
       dispatch({
-        type: 'SET_LOADING',
+        type: SET_LOADING,
         payload: { coins: false },
       });
   }
@@ -20,7 +23,7 @@ export function fetchCoinData(){
 
 export function changeCurrency(value){
   return {
-    type: 'CHANGE_CURRENCY',
+    type: CHANGE_CURRENCY,
     currency: value,
   }
 }

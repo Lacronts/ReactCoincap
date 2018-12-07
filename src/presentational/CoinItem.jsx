@@ -5,7 +5,7 @@ import {
   Grid,
   Image,
 } from 'semantic-ui-react';
-import './CoinItem.css';
+import './styles/CoinItem.css';
 import { formatCurrency, formatPercent, formatNumber, isValuePositive } from '../utils';
 
 const CoinItem = ({coin, currency}) => (

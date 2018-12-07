@@ -1,12 +1,9 @@
 import axios from 'axios';
+import { FETCH_HISTORICAL_DATA } from '../constants/historical';
 
 export function fetchHistoricalData(coin, limit){
-  limit = limit || 30;
+  limit = limit || 31;
   return dispatch => {
-    dispatch({
-      type: 'SET_LOADING',
-      payload: { historical: true },
-    });
     axios.get('http://apicoincap.eu-central-1.elasticbeanstalk.com/historical', {
       params: {
         from: coin,
@@ -14,19 +11,9 @@ export function fetchHistoricalData(coin, limit){
       }
     }).then((data) => {
       dispatch({
-        type: 'FETCH_HISTORICAL_DATA',
+        type: FETCH_HISTORICAL_DATA,
         payload: data,
-      });
-      dispatch({
-        type: 'SET_LOADING',
-        payload: { historical: false },
       });
     })
   }
 };
-
-export function clearHistoricalData(){
-  return {
-    type: 'CLEAR_HISTORICAL_DATA',
-  }
-}

@@ -4,7 +4,7 @@ import {
   Container,
   Header,
 } from 'semantic-ui-react';
-import './Header.css';
+import './styles/Header.css';
 
 const style = (mobile) =>  ({
   h1: {

@@ -10,7 +10,7 @@ import {
    Divider,
    Icon
  } from 'semantic-ui-react';
- import './HomePage.css';
+ import './styles/HomePage.css';
 
 const style = {
   relative: {

@@ -10,7 +10,7 @@ import {
   Header,
   Divider,
 } from 'semantic-ui-react';
-import './MarketData.css';
+import './styles/MarketData.css';
 
 const style = {
   relative: {

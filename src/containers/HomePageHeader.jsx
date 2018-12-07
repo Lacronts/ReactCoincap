@@ -13,7 +13,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
-import './HomePageHeader.css';
+import './styles/HomePageHeader.css';
 
 const style = {
   desktop: {

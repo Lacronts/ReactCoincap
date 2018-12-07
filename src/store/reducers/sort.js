@@ -1,6 +1,8 @@
+import { CHANGE_SORTBY } from '../constants/sort';
+
 export function setSortBy(state = {column: '', orders: 'desc'}, action) {
   switch (action.type) {
-    case 'CHANGE_SORTBY':
+    case CHANGE_SORTBY:
     const column = action.column;
     const orders = action.column === state.column
                     ? (state.orders === 'desc' ? 'asc' : 'desc')

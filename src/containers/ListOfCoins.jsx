@@ -14,7 +14,7 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react';
-import './ListOfCoins.css';
+import './styles/ListOfCoins.css';
 
 const style = {
   buttons: {

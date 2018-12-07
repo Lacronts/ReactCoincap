@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchCoinData } from '../store/actions/coinAction';
 import HistoricalChart from './HistoricalChart';
-import { fetchHistoricalData, clearHistoricalData } from '../store/actions/historicalAction';
+import { fetchHistoricalData } from '../store/actions/historicalAction';
 import { formatCurrency, formatPercent, formatNumber, isValuePositive } from '../utils';
 import Preloader from '../presentational/Preloader';
 import NotFound from '../presentational/NotFound';
@@ -16,7 +16,7 @@ import {
   Divider,
   Button,
 } from 'semantic-ui-react';
-import './CoinDetails.css';
+import './styles/CoinDetails.css';
 
 const style = {
   mt2: {
@@ -147,7 +147,7 @@ class CoinDetails extends React.Component {
   )
 
   render(){
-    const { coin, coinsIsLoading, historical, historicalIsLoading } = this.props;
+    const { coin, coinsIsLoading, historical } = this.props;
 
     if (coinsIsLoading) return <Preloader height='75vh'/>;
 
@@ -160,7 +160,6 @@ class CoinDetails extends React.Component {
           Price Chart
         </Divider>
         <HistoricalChart
-          loading={historicalIsLoading}
           data={historical}
         />
       </React.Fragment>
@@ -172,7 +171,6 @@ CoinDetails.propTypes = {
   match: PropTypes.object.isRequired,
   coin: PropTypes.object.isRequired,
   coinsIsLoading: PropTypes.bool.isRequired,
-  historicalIsLoading: PropTypes.bool.isRequired,
   fetchCoinData: PropTypes.func.isRequired,
   historical: PropTypes.array.isRequired,
 }
@@ -184,14 +182,12 @@ const coinSelector = (state, ownProps) => {
 const mapStateToProps = (state, ownProps) => ({
       coin: coinSelector(state, ownProps) || {},
       coinsIsLoading: state.isLoading.coins,
-      historicalIsLoading: state.isLoading.historical,
       historical: state.historical,
     });
 
 const mapDispatchToProps = {
     fetchCoinData,
     fetchHistoricalData,
-    clearHistoricalData,
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CoinDetails));

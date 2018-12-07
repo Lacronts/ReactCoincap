@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Header,
   Container,
-
 } from 'semantic-ui-react';
 
 const style = {

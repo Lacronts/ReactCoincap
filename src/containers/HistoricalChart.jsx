@@ -21,6 +21,7 @@ const style = {
   nodata: {
     display: 'flex',
     justifyContent: 'center',
+    fontSize: '2em',
   }
 }
 
@@ -29,46 +30,36 @@ class HistoricalChart extends React.Component {
     super(props);
     this.state = {
       data: [],
-      loading: true,
       coords: [],
       crosshairValues: {x:0, y:0},
-      width: 0,
+      width: 30,
       tickTotal: 0,
     };
-    this.updateWindowDimension = this.updateWindowDimension.bind(this);
   }
 
-  static getDerivedStateFromProps(nextProp){
-    return nextProp;
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if (!compareArray(this.state.data, prevState.data)) {
-      this.setState({
-        coords: getCoordsFromData(this.state.data)
-      })
+  static getDerivedStateFromProps({data}, state){
+    if (!compareArray(state.data, data)){
+      return {
+        data: data,
+        coords: getCoordsFromData(data),
+      };
     }
+    return {
+      data
+    };
   }
 
   componentDidMount(){
     this.updateWindowDimension();
     window.addEventListener('resize', this.updateWindowDimension);
-
-    const { coords, data } = this.state;
-
-    if (!coords.length) {
-      this.setState({
-        coords: getCoordsFromData(data)
-      })
-    }
   }
 
   componentWillUnmount(){
     window.removeEventListener('resize', this.updateWindowDimension);
   }
 
-  updateWindowDimension(){
-    const width = window.innerWidth;
+  updateWindowDimension = () => {
+    const width = document.documentElement.clientWidth;
     const tickTotal = getTickTotal(width);
 
     this.setState({
@@ -104,8 +95,9 @@ class HistoricalChart extends React.Component {
           hideLine
         />
           <LineSeries
-            curve="curveBasis"
+            curve='curveCardinal'
             strokeStyle="solid"
+            animation='stiff'
             data={coords}
             onNearestX={(value) => {
               this.setState({crosshairValues: value});
@@ -150,7 +142,7 @@ function getReadableDate(date){
 function getTickTotal(width){
   if (width >= 1300) return 10;
   if (width >= 600 && width < 1300) return 6;
-  if (width >= 200 && width < 600) return 2;
+  if (width < 600) return 2;
   return 10;
 }
 

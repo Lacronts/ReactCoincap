@@ -130,7 +130,7 @@ export default class ScrollUp extends React.Component {
 }
 
 ScrollUp.defaultProps = {
-    duration: 350,
+    duration: 250,
     easing: 'easeOutCirc',
     style: {
         position: 'fixed',
